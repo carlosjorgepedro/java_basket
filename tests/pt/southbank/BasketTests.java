@@ -10,7 +10,8 @@ import org.junit.jupiter.api.Test;
 public class BasketTests {
 	@Test
 	public void addItemToBasket() {
-		Basket basket = new Basket();
+		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
+		Basket basket = new Basket(priceProvider);
 		String product = "butter";
 		basket.add(product);
 
@@ -21,7 +22,8 @@ public class BasketTests {
 
 	@Test
 	public void addMultipleItemsToBasket() {
-		Basket basket = new Basket();
+		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
+		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
 		productList.add("butter");
 		productList.add("milk");
@@ -41,7 +43,8 @@ public class BasketTests {
 
 	@Test
 	public void addSameProductsMultipleTimes() {
-		Basket basket = new Basket();
+		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
+		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
 		productList.add("butter");
 		productList.add("butter");
@@ -58,7 +61,8 @@ public class BasketTests {
 
 	@Test
 	public void itemsInBasketHavePrice() {
-		Basket basket = new Basket();
+		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(10));
+		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
 		productList.add("butter");
 
@@ -69,5 +73,16 @@ public class BasketTests {
 		List<BasketItem> products = basket.get();
 		BasketItem basketItem = products.get(0);
 		assertEquals(new BigDecimal(10), basketItem.price());
+	}
+
+	@Test
+	public void itemPriceCamesFromPriceProvider() {
+		BigDecimal productPrice = new BigDecimal(11);
+		FakePriceProvider priceProvider = new FakePriceProvider(productPrice);
+		Basket basket = new Basket(priceProvider);
+		basket.add("butter");
+
+		BasketItem basketItem = basket.get().get(0);
+		assertEquals(productPrice, basketItem.price());
 	}
 }
