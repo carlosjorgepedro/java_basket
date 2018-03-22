@@ -2,14 +2,14 @@ package pt.southbank;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import pt.southbank.discounts.Discount;
+import pt.southbank.discounts.TenPercentFlatDiscountProvider;
+import pt.southbank.discounts.ZeroDiscountProvider;
 import pt.southbank.exceptions.InvalidProduct;
 
 public class BasketTests {
@@ -29,7 +29,7 @@ public class BasketTests {
 		String product = "butter";
 		basket.add(product);
 
-		List<BasketItem> productsInBasket = basket.get();
+		List<PricedProduct> productsInBasket = basket.get();
 		assertEquals(1, productsInBasket.size());
 		assertEquals(product, productsInBasket.get(0).product());
 	}
@@ -48,10 +48,10 @@ public class BasketTests {
 			basket.add(product);
 		}
 
-		List<BasketItem> productsInBasket = basket.get();
+		List<PricedProduct> productsInBasket = basket.get();
 		assertEquals(3, productsInBasket.size());
 
-		for (BasketItem itemInBasket : productsInBasket) {
+		for (PricedProduct itemInBasket : productsInBasket) {
 			assertTrue(productList.contains(itemInBasket.product()));
 		}
 	}
@@ -71,7 +71,7 @@ public class BasketTests {
 			basket.add(product);
 		}
 
-		List<BasketItem> productsInBasket = basket.get();
+		List<PricedProduct> productsInBasket = basket.get();
 		assertEquals(4, productsInBasket.size());
 	}
 
@@ -87,8 +87,8 @@ public class BasketTests {
 			basket.add(product);
 		}
 
-		List<BasketItem> products = basket.get();
-		BasketItem basketItem = products.get(0);
+		List<PricedProduct> products = basket.get();
+		PricedProduct basketItem = products.get(0);
 		assertEquals(0, new BigDecimal(10).compareTo(basketItem.price()));
 	}
 
@@ -100,7 +100,7 @@ public class BasketTests {
 		Basket basket = new Basket(priceProvider, discount);
 		basket.add("butter");
 
-		BasketItem basketItem = basket.get().get(0);
+		PricedProduct basketItem = basket.get().get(0);
 		assertEquals(0, productPrice.compareTo(basketItem.price()));
 	}
 

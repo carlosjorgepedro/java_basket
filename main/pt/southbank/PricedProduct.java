@@ -2,11 +2,11 @@ package pt.southbank;
 
 import java.math.BigDecimal;
 
-public class BasketItem {
+public class PricedProduct {
 	private String product;
 	private BigDecimal price;
 
-	public BasketItem(String product, BigDecimal price) {
+	public PricedProduct(String product, BigDecimal price) {
 		this.product = product;
 		this.price = price;
 	}

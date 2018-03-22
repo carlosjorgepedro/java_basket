@@ -5,8 +5,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import pt.southbank.BasketItem;
-import pt.southbank.ZeroDiscountProvider;
+import pt.southbank.PricedProduct;
 
 public class CumulativeDiscountTests {
 
@@ -22,7 +21,7 @@ public class CumulativeDiscountTests {
 			assertFalse(discount.applied());
 		}
 		
-		cumulativeDiscount.apply(new ArrayList<BasketItem>());
+		cumulativeDiscount.apply(new ArrayList<PricedProduct>());
 		
 		for(ZeroDiscountProvider discount : discounts) {
 			assertTrue(discount.applied());

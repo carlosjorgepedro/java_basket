@@ -9,7 +9,7 @@ import pt.southbank.exceptions.InvalidProduct;
 import pt.southbank.exceptions.NoPriceForProduct;
 
 public class Basket {
-	private List<BasketItem> items;
+	private List<PricedProduct> items;
 	private PriceProvider priceProvider;
 	private Discount discountProvider;
 
@@ -22,13 +22,13 @@ public class Basket {
 	public void add(String product) throws InvalidProduct {
 		try {
 			BigDecimal price = priceProvider.getPrice(product);
-			items.add(new BasketItem(product, price));
+			items.add(new PricedProduct(product, price));
 		} catch (NoPriceForProduct exception) {
 			throw new InvalidProduct(product);
 		}
 	}
 
-	public List<BasketItem> get() {
+	public List<PricedProduct> get() {
 		return items;
 	}
 
@@ -36,7 +36,7 @@ public class Basket {
 		BigDecimal total = new BigDecimal(0);		
 		BigDecimal discount = discountProvider.apply(items);	
 		
-		for (BasketItem itemInBasket : items) {
+		for (PricedProduct itemInBasket : items) {
 			total = total.add(itemInBasket.price());
 		}
 		return total.subtract(discount);
