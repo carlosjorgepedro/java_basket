@@ -105,7 +105,7 @@ public class TwoButtersHalfBreadDiscountTest {
 
 		Discount discount = new TwoButtersHalfBreadDiscount();
 		BigDecimal discountTotal = discount.apply(itemsInBasket);
-		assertEquals(0, discountTotal.compareTo(expectedTotalDiscount), String.format("expected %s but value was %s", expectedTotalDiscount, discountTotal);
+		assertEquals(0, discountTotal.compareTo(expectedTotalDiscount), String.format("expected %s but value was %s", expectedTotalDiscount, discountTotal));
 	}
 	
 	
