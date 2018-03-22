@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 public class BasketTests {
 	@Test
-	public void addItemToBasket() {
+	public void addItemToBasket() throws NoPriceForProduct {
 		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
 		Basket basket = new Basket(priceProvider);
 		String product = "butter";
@@ -21,7 +21,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void addMultipleItemsToBasket() {
+	public void addMultipleItemsToBasket() throws NoPriceForProduct {
 		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
@@ -42,7 +42,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void addSameProductsMultipleTimes() {
+	public void addSameProductsMultipleTimes() throws NoPriceForProduct {
 		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
@@ -60,7 +60,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void itemsInBasketHavePrice() {
+	public void itemsInBasketHavePrice() throws NoPriceForProduct {
 		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(10));
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
@@ -76,7 +76,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void itemPriceCamesFromPriceProvider() {
+	public void itemPriceCamesFromPriceProvider() throws NoPriceForProduct {
 		BigDecimal productPrice = new BigDecimal(11);
 		FakePriceProvider priceProvider = new FakePriceProvider(productPrice);
 		Basket basket = new Basket(priceProvider);

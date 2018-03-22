@@ -13,7 +13,7 @@ public class Basket {
 		this.items = new ArrayList<>();
 	}
 
-	public void add(String product) {
+	public void add(String product) throws NoPriceForProduct {
 		BigDecimal price =  priceProvider.getPrice(product);
 		items.add(new BasketItem(product, price));
 	}
