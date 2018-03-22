@@ -1,5 +1,10 @@
 package pt.southbank;
 
-public class NoPriceForProduct extends Exception {
+class NoPriceForProduct extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2210047844325886849L;
 
 }

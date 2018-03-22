@@ -3,7 +3,7 @@ package pt.southbank;
 import java.math.BigDecimal;
 import java.util.Map;
 
-public class StaticPriceProvider implements PriceProvider {
+class StaticPriceProvider implements PriceProvider {
 	private Map<String, BigDecimal> priceList;
 
 	public StaticPriceProvider(Map<String, BigDecimal> priceList) {

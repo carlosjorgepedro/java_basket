@@ -2,6 +2,6 @@ package pt.southbank;
 
 import java.math.BigDecimal;
 
-public interface PriceProvider {
+interface PriceProvider {
 	public BigDecimal getPrice(String product) throws NoPriceForProduct;
 }

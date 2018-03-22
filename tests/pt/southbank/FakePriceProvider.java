@@ -2,7 +2,7 @@ package pt.southbank;
 
 import java.math.BigDecimal;
 
-public class FakePriceProvider implements PriceProvider {
+class FakePriceProvider implements PriceProvider {
 	private BigDecimal price;
 
 	public FakePriceProvider(BigDecimal price) {
