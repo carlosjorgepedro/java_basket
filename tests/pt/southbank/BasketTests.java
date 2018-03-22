@@ -85,4 +85,26 @@ public class BasketTests {
 		BasketItem basketItem = basket.get().get(0);
 		assertEquals(productPrice, basketItem.price());
 	}
+
+	@Test
+	public void basketHasTotal() {
+		Basket basket = new Basket(null);
+		basket.total();
+	}
+
+	@Test
+	public void totalHasTheTotalPriceofAllItemsInBasket() throws NoPriceForProduct {
+		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(5));
+		Basket basket = new Basket(priceProvider);
+		List<String> productList = new ArrayList<String>();
+		productList.add("butter");
+		productList.add("milk");
+		productList.add("bread");
+
+		for (String product : productList) {
+			basket.add(product);
+		}
+
+		assertEquals(new BigDecimal(15), basket.total());
+	}
 }

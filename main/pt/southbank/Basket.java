@@ -14,7 +14,7 @@ public class Basket {
 	}
 
 	public void add(String product) throws NoPriceForProduct {
-		BigDecimal price =  priceProvider.getPrice(product);
+		BigDecimal price = priceProvider.getPrice(product);
 		items.add(new BasketItem(product, price));
 	}
 
@@ -22,4 +22,12 @@ public class Basket {
 		return items;
 	}
 
+	public BigDecimal total() {
+		BigDecimal total = new BigDecimal(0);
+
+		for (BasketItem itemInBasket : items) {
+			total = total.add(itemInBasket.price());
+		}
+		return total;
+	}
 }
