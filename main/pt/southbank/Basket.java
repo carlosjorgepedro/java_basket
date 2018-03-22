@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import pt.southbank.discounts.Discount;
 import pt.southbank.exceptions.InvalidProduct;
 import pt.southbank.exceptions.NoPriceForProduct;
 
@@ -32,8 +33,7 @@ public class Basket {
 	}
 
 	public BigDecimal total() {
-		BigDecimal total = new BigDecimal(0);
-		
+		BigDecimal total = new BigDecimal(0);		
 		BigDecimal discount = discountProvider.apply(items);	
 		
 		for (BasketItem itemInBasket : items) {

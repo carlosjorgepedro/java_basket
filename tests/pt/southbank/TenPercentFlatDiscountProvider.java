@@ -3,6 +3,8 @@ package pt.southbank;
 import java.math.BigDecimal;
 import java.util.List;
 
+import pt.southbank.discounts.Discount;
+
 public class TenPercentFlatDiscountProvider implements Discount {
 	private static final BigDecimal flatDiscount = new BigDecimal("0.10");
 

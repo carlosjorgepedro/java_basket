@@ -9,6 +9,7 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import pt.southbank.discounts.Discount;
 import pt.southbank.exceptions.InvalidProduct;
 
 public class BasketTests {
