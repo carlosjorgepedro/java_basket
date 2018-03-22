@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 
 public class BasketTests {
-	@Test public void testAddItemToBasket() {
+	@Test public void addItemToBasket() {
 		Basket basket = new Basket();
 		String product = "butter";
 		basket.add(product);
@@ -20,7 +20,7 @@ public class BasketTests {
 		assertEquals(product, productsInBasket.get(0));
 	}
 	
-	@Test public void testAddMultipleItemsToBasket() {
+	@Test public void addMultipleItemsToBasket() {
 		Basket basket = new Basket();
 		List<String> productList = new ArrayList<String>();
 		productList.add("butter");
