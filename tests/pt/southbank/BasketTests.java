@@ -38,4 +38,21 @@ public class BasketTests {
 			assertTrue(productsInBasket.contains(product));
 		}
 	}
+	
+	@Test public void addSameProductsMultipleTimes() {
+		Basket basket = new Basket();
+		List<String> productList = new ArrayList<String>();
+		productList.add("butter");
+		productList.add("butter");
+		productList.add("butter");
+		productList.add("butter");
+		
+		for(String product : productList) {
+			basket.add(product);
+		}		
+		
+		List<String> productsInBasket = basket.get();
+		assertEquals(4, productsInBasket.size());
+		
+	}
 }
