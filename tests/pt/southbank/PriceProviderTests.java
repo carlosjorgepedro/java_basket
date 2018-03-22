@@ -23,15 +23,15 @@ public class PriceProviderTests {
 
 		PriceProvider priceProvider = new StaticPriceProvider(priceList);
 		BigDecimal price = priceProvider.getPrice("bread");
-		assertEquals(breadPrice, price);
+		assertEquals(0,breadPrice.compareTo( price));
 
 		priceList = new HashMap<>();
-		breadPrice = new BigDecimal(77);
+		breadPrice = new BigDecimal(77.0);
 		priceList.put("bread", breadPrice);
 
 		priceProvider = new StaticPriceProvider(priceList);
 		price = priceProvider.getPrice("bread");
-		assertEquals(breadPrice, price);
+		assertEquals(0, breadPrice.compareTo(price));
 	}
 
 	@Test

@@ -10,9 +10,11 @@ import pt.southbank.exceptions.NoPriceForProduct;
 public class Basket {
 	private List<BasketItem> items;
 	private PriceProvider priceProvider;
+	private Discount discountProvider;
 
-	public Basket(PriceProvider priceProvider) {
+	public Basket(PriceProvider priceProvider, Discount discountProvider) {
 		this.priceProvider = priceProvider;
+		this.discountProvider = discountProvider;
 		this.items = new ArrayList<>();
 	}
 
@@ -31,10 +33,12 @@ public class Basket {
 
 	public BigDecimal total() {
 		BigDecimal total = new BigDecimal(0);
-
+		
+		BigDecimal discount = discountProvider.apply(items);	
+		
 		for (BasketItem itemInBasket : items) {
 			total = total.add(itemInBasket.price());
 		}
-		return total;
+		return total.subtract(discount);
 	}
 }

@@ -23,4 +23,8 @@ class FakePriceProvider implements PriceProvider {
 		}
 		return price;
 	}
+	
+	public BigDecimal productFlatPrice() {
+		return price;
+	}
 }
