@@ -2,15 +2,17 @@ package pt.southbank;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 public class BasketTests {
 	@Test
-	public void addItemToBasket() throws NoPriceForProduct {
-		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
+	public void addItemToBasket() throws InvalidProduct {
+		FakePriceProvider priceProvider = new FakePriceProvider();
 		Basket basket = new Basket(priceProvider);
 		String product = "butter";
 		basket.add(product);
@@ -21,8 +23,8 @@ public class BasketTests {
 	}
 
 	@Test
-	public void addMultipleItemsToBasket() throws NoPriceForProduct {
-		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
+	public void addMultipleItemsToBasket() throws InvalidProduct {
+		FakePriceProvider priceProvider = new FakePriceProvider();
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
 		productList.add("butter");
@@ -42,8 +44,8 @@ public class BasketTests {
 	}
 
 	@Test
-	public void addSameProductsMultipleTimes() throws NoPriceForProduct {
-		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(11));
+	public void addSameProductsMultipleTimes() throws InvalidProduct {
+		FakePriceProvider priceProvider = new FakePriceProvider();
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
 		productList.add("butter");
@@ -60,7 +62,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void itemsInBasketHavePrice() throws NoPriceForProduct {
+	public void itemsInBasketHavePrice() throws InvalidProduct {
 		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(10));
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
@@ -76,7 +78,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void itemPriceCamesFromPriceProvider() throws NoPriceForProduct {
+	public void itemPriceCamesFromPriceProvider() throws InvalidProduct {
 		BigDecimal productPrice = new BigDecimal(11);
 		FakePriceProvider priceProvider = new FakePriceProvider(productPrice);
 		Basket basket = new Basket(priceProvider);
@@ -93,7 +95,7 @@ public class BasketTests {
 	}
 
 	@Test
-	public void totalHasTheTotalPriceofAllItemsInBasket() throws NoPriceForProduct {
+	public void totalHasTheTotalPriceofAllItemsInBasket() throws InvalidProduct {
 		FakePriceProvider priceProvider = new FakePriceProvider(new BigDecimal(5));
 		Basket basket = new Basket(priceProvider);
 		List<String> productList = new ArrayList<String>();
@@ -104,7 +106,24 @@ public class BasketTests {
 		for (String product : productList) {
 			basket.add(product);
 		}
-
 		assertEquals(new BigDecimal(15), basket.total());
+	}
+
+	@Test
+	public void basketThrowsIfProductHasNotPrice() throws InvalidProduct {
+		FakePriceProvider priceProvider = new FakePriceProvider();
+		Basket basket = new Basket(priceProvider);
+		assertThrows(InvalidProduct.class, () -> basket.add(FakePriceProvider.ProductWithoutPrice));
+
+	}
+
+	@Test
+	public void basketExceptionSpecifyFailedProduct() throws InvalidProduct {
+		FakePriceProvider priceProvider = new FakePriceProvider();
+		Basket basket = new Basket(priceProvider);
+		InvalidProduct thrownException = assertThrows(InvalidProduct.class,
+				() -> basket.add(FakePriceProvider.ProductWithoutPrice));
+		
+		assertEquals(FakePriceProvider.ProductWithoutPrice, thrownException.product());
 	}
 }

@@ -13,9 +13,13 @@ public class Basket {
 		this.items = new ArrayList<>();
 	}
 
-	public void add(String product) throws NoPriceForProduct {
-		BigDecimal price = priceProvider.getPrice(product);
-		items.add(new BasketItem(product, price));
+	public void add(String product) throws InvalidProduct {
+		try {
+			BigDecimal price = priceProvider.getPrice(product);
+			items.add(new BasketItem(product, price));
+		} catch (NoPriceForProduct exception) {
+			throw new InvalidProduct(product);
+		}
 	}
 
 	public List<BasketItem> get() {
