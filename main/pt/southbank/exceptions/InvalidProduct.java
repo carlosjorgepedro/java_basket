@@ -1,4 +1,4 @@
-package pt.southbank;
+package pt.southbank.exceptions;
 
 public class InvalidProduct extends Exception {
 	/**

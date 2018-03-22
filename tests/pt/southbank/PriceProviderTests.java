@@ -7,6 +7,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.Test;
 
+import pt.southbank.exceptions.NoPriceForProduct;
+
 public class PriceProviderTests {
 	@Test
 	public void priceProviderExists() {

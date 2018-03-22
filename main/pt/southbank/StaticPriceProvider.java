@@ -3,6 +3,8 @@ package pt.southbank;
 import java.math.BigDecimal;
 import java.util.Map;
 
+import pt.southbank.exceptions.NoPriceForProduct;
+
 class StaticPriceProvider implements PriceProvider {
 	private Map<String, BigDecimal> priceList;
 

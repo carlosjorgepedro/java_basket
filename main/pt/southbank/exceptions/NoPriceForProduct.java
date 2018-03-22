@@ -1,6 +1,6 @@
-package pt.southbank;
+package pt.southbank.exceptions;
 
-class NoPriceForProduct extends Exception {
+public class NoPriceForProduct extends Exception {
 
 	/**
 	 * 

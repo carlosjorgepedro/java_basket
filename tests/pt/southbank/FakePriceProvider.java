@@ -3,6 +3,8 @@ package pt.southbank;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import pt.southbank.exceptions.NoPriceForProduct;
+
 class FakePriceProvider implements PriceProvider {
 	public static final String ProductWithoutPrice = UUID.randomUUID().toString();
 	private BigDecimal price;

@@ -4,6 +4,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import pt.southbank.exceptions.InvalidProduct;
+import pt.southbank.exceptions.NoPriceForProduct;
+
 public class Basket {
 	private List<BasketItem> items;
 	private PriceProvider priceProvider;

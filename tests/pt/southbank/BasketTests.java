@@ -9,6 +9,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import pt.southbank.exceptions.InvalidProduct;
+
 public class BasketTests {
 	@Test
 	public void addItemToBasket() throws InvalidProduct {
